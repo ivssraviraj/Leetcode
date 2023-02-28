@@ -14,8 +14,8 @@ public:
         int ans=0;
         while(head != NULL)
         {
-            ans*=2;
-            ans+=head->val;
+            ans = ans << 1;
+            ans ^= head->val;
             head = head->next;
             
         }

@@ -11,7 +11,7 @@ public:
             
             if(mid*mid <= x){
                 
-             l = mid + 1;
+                l = mid + 1;
                 res = mid;
             }
             else if(mid*mid > x) {

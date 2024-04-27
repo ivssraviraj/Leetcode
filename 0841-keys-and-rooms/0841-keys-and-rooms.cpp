@@ -1,16 +1,30 @@
 class Solution {
 public:
    bool canVisitAllRooms(vector<vector<int>>& rooms) {
-        int n = size(rooms);
-        vector<bool>visited(n, false);
-        dfs(rooms, visited, 0);    // start from room 0
-        for(auto v : visited) if(!v) return false; // if all rooms were not reached from room 0, return false
-	return true; 
-    }
+        
+        queue<int> q;
+        int n = rooms.size();
+        vector<bool> vis(n,false);
+        q.push(0);  // 1
 
-    void dfs(vector<vector<int> >& rooms , vector<bool>& visited, int i){
-        visited[i] = true;
-        for(auto& room : rooms[i])
-            if(!visited[room]) dfs(rooms, visited, room);
+        while(!q.empty()){
+            
+            int temp = q.front();     // 2
+            q.pop();                 
+            
+            if(vis[temp] == true) continue; // 3
+            vis[temp] = true;
+            
+            for(auto room : rooms[temp]){   // 4
+                q.push(room);
+            }
+
+        }
+        
+        for(int i = 0; i < n; i++){         // 5
+            if(vis[i]==false) return false;
+        }
+        return true;
+
     }
 };
